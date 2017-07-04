@@ -100,7 +100,7 @@ class CheckCouchbaseCluster < Sensu::Plugin::Check::CLI
     nodes_unactive = results[:nodes].select { |node| node[:clusterMembership] != 'active' }
     critical "These nodes are not 'active' in the cluster: #{nodes_unactive.map { |node| node[:hostname] }}" if nodes_unactive.size > 0 # rubocop:disable ZeroLengthPredicate
 
-    critical "Cluster #{results[:alerts].size} alert(s)" if results[:alerts].size > 0 # rubocop:disable ZeroLengthPredicate
+    # critical "Cluster #{results[:alerts].size} alert(s)" if results[:alerts].size > 0 # rubocop:disable ZeroLengthPredicate
 
     warning "Cluster rebalance status #{results[:rebalanceStatus]}" if results[:rebalanceStatus] != 'none'
 
